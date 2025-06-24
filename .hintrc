@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "view-transition-name",
+          "text-size-adjust",
+          "text-size-adjust: none"
+        ]
+      }
+    ]
+  }
+}

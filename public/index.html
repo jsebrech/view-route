@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>custom element demo</title>
+    <style>
+        @import 'reset.css';
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 2em;
+        }
+
+        p { margin-top: 1em; }
+    </style>
+    <script type="module" src="index.js" async></script>
+</head>
+<body>
+    <noscript>Please enable JavaScript to run this app.</noscript>
+    
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+        window.originalHref = window.location.href;
+        // see 404.html
+        (function (l) {
+            if (l.search[1] === '/') {
+                var decoded = l.search.slice(1).split('&').map(function (s) {
+                    return s.replace(/~and~/g, '&')
+                }).join('?');
+                window.history.replaceState(null, null,
+                    l.pathname.slice(0, -1) + decoded + l.hash
+                );
+            }
+        }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+    
+    <view-route path="/(?:index.html)?" exact>
+        <h1>Welcome</h1>
+        <p>
+            This is a demo for the &lt;view-route&gt; custom element.
+        </p>
+        <p>
+            Go to a <a href="/details">list</a> or an <a href="/unknown">unknown page</a>.
+        </p>
+    </view-route>
+    <view-route path="/details">
+        <h1>The details</h1>
+        <view-route path="/details" exact>
+            <p>This is a list:</p>
+            <ul>
+                <li><a href="/details/1">item 1</a></li>
+                <li><a href="/details/2">item 2</a></li>
+                <li><a href="/details/3">item 3</a></li>
+            </ul>
+            <p><a href="/">Go home</a></p>
+        </view-route>
+        <view-route path="/details/(?<id>[\w]+)">
+            <p>And this is an item:</p>
+            <p id="item"></p>
+            <p><a href="/details">Back to list</a></p>
+        </view-route>
+    </view-route>
+    <view-route path="*">
+        <h1>404</h1>
+        <p>This page does not exist. Why not <a href="/">go home</a>?</p>
+    </view-route>
+</body>
+</html>
